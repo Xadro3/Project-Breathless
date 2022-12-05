@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour
 {
 
     private NavMeshAgent nAgent;
-    GameObject tile;
+    public GameObject tile;
     Ray ray;
     RaycastHit raycastHit;
     public int range;
+    
     void Start()
     {
        nAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(raycastHit);
             nAgent.SetDestination(raycastHit.transform.position);
         }
+       
     }
     public GameObject GetTile()
     {
@@ -33,12 +35,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
-
+        
         if (other.gameObject.tag == "Floor")
             {
                 tile = other.gameObject;
-                Debug.Log(tile.transform.position);
+                //Debug.Log(tile.transform.position);
             }
         
     }
