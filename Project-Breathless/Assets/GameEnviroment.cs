@@ -13,6 +13,10 @@ public class GameEnviroment : MonoBehaviour
     {
         get { return tiles; }
     }
+    public GameObject[,] TwoTiles
+    {
+        get { return twoTiles; }
+    }
     public void SortTiles()
     {
         tile.Sort();
