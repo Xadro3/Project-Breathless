@@ -8,7 +8,9 @@ public class MovementManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject playerTile;
     public GameObject player;
-    GameObject[,] tiles;
+    public GameObject[,] tiles;
+    int indexZ;
+    int indexX;
     void Start()
     {
         tiles = GameEnviroment.Singleton.TwoTiles;
@@ -18,13 +20,18 @@ public class MovementManager : MonoBehaviour
     void Update()
     {
         playerTile = player.GetComponent<PlayerController>().GetTile();
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            LocatePlayerTile();
+            GridFloodFill(0, indexZ, indexX);
+        }
         
     }
 
-    void GridRangeColorizer()
+    void LocatePlayerTile()
     {
-        int indexZ = tiles.GetLength(0);
-        int indexX = tiles.GetLength(1);
+        indexZ = tiles.GetLength(0); //this is z 
+        indexX = tiles.GetLength(1); // this is x
 
         for(int i = 0; i < indexZ; i++)
         {
@@ -34,13 +41,46 @@ public class MovementManager : MonoBehaviour
                 {
                     indexX = y;
                     indexZ = i;
+                    Debug.Log(indexX + " " + indexZ);
                     break;
                 }
             }
         }
 
+    }
+
+    void GridFloodFill(int distance, int z, int x)
+    {
+
+        Debug.Log(distance);
 
 
-     
+        if (!tiles[z, x].GetComponent<Tile>().isObstacle && distance<=player.GetComponent<PlayerController>().range && !tiles[z, x].GetComponent<Tile>().visited)
+        {
+            tiles[z, x].GetComponent<Tile>().visited = true;
+            tiles[z, x].GetComponent<Hoverable>().ColorMe();
+
+
+          
+            if (z + 1 < tiles.GetLength(0))
+            {
+                GridFloodFill(distance + 1, z + 1, x);
+            }
+            if (z - 1 > 0)
+            {
+                GridFloodFill(distance + 1, z - 1, x);
+            }
+            if (x + 1 < tiles.GetLength(1))
+            {
+                GridFloodFill(distance + 1, z, x + 1);
+            }
+            if (x - 1 > 0)
+            {
+                GridFloodFill(distance + 1, z, x - 1);
+            }
+
+
+
+        }
     }
 }

@@ -28,7 +28,7 @@ public class Mouseover : MonoBehaviour
             
             if(lastObject != null)
             {
-                lastObject.gameObject.GetComponent<hoverable>().DecolorMe();
+                lastObject.gameObject.GetComponent<Hoverable>().DecolorMe();
 
             }
 
@@ -38,14 +38,14 @@ public class Mouseover : MonoBehaviour
 
             if (lastObject != null)
             {
-                lastObject.gameObject.GetComponent<hoverable>().ColorMe();
+                lastObject.gameObject.GetComponent<Hoverable>().ColorMe();
             }
         }
         else if (raycastHit.collider == null)
         {
             if(lastObject != null)
             {
-                lastObject.gameObject.GetComponent<hoverable>().DecolorMe();
+                lastObject.gameObject.GetComponent<Hoverable>().DecolorMe();
                
             }
 

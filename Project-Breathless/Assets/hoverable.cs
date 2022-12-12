@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hoverable : MonoBehaviour
+public class Hoverable : MonoBehaviour
 {
     // Start is called before the first frame update
     public MeshRenderer render;
@@ -18,7 +18,10 @@ public class hoverable : MonoBehaviour
 
         render.material.color = Color.red;
     }
-
+    public void ColoroMeBlue()
+    {
+        render.material.color = Color.blue;
+    }
     public void DecolorMe()
     {
         render.material.color = originalColor;
