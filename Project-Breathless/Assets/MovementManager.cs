@@ -52,29 +52,29 @@ public class MovementManager : MonoBehaviour
     void GridFloodFill(int distance, int z, int x)
     {
 
-        Debug.Log(distance);
+        
 
 
         if (!tiles[z, x].GetComponent<Tile>().isObstacle && distance<=player.GetComponent<PlayerController>().range && !tiles[z, x].GetComponent<Tile>().visited)
         {
             tiles[z, x].GetComponent<Tile>().visited = true;
             tiles[z, x].GetComponent<Hoverable>().ColorMe();
-
+            tiles[z, x].gameObject.GetComponentInChildren<TextMesh>().text = distance.ToString();
 
           
-            if (z + 1 < tiles.GetLength(0))
+            if (z + 1 <= tiles.GetLength(0))
             {
                 GridFloodFill(distance + 1, z + 1, x);
             }
-            if (z - 1 > 0)
+            if (z - 1 >= 0)
             {
                 GridFloodFill(distance + 1, z - 1, x);
             }
-            if (x + 1 < tiles.GetLength(1))
+            if (x + 1 <= tiles.GetLength(1))
             {
                 GridFloodFill(distance + 1, z, x + 1);
             }
-            if (x - 1 > 0)
+            if (x - 1 >= 0)
             {
                 GridFloodFill(distance + 1, z, x - 1);
             }
