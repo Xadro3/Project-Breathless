@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     Ray ray;
     RaycastHit raycastHit;
     public int range;
-    
+    public bool isActive;
     void Start()
     {
        nAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(2))
+        //Debug.Log(isActive);
+        if (Input.GetMouseButtonUp(2)&&isActive)
         {
+            Debug.Log("i got here");
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out raycastHit, 5000f,8);
             Debug.Log(raycastHit);
