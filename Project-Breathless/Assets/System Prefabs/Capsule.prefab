@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 119
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1966475866077403773
 Transform:
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   range: 6
+  isActive: 0
 --- !u!195 &1966475866077403770
 NavMeshAgent:
   m_ObjectHideFlags: 0
